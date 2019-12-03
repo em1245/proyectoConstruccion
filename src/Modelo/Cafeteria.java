@@ -52,6 +52,11 @@ public class Cafeteria {
         maquina.getLeche().setEnabled(true);
         maquina.getJbtAceptar().setVisible(true);
         maquina.getMenu().getMenu(0).getItem(0).setEnabled(false);
+        maquina.getJbtUno().setEnabled(false);
+        maquina.getJbtCinco().setEnabled(false);
+        maquina.getJbtDiez().setEnabled(false);
+        maquina.getJbtVeinte().setEnabled(false);
+        maquina.getJbtCincuenta().setEnabled(false);
     }
     
     public void preparacion() {

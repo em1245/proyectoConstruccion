@@ -11,16 +11,21 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Ariel May
+ * @author @everyone
  */
 public class Cafeteria {
-    
+
     private MaquinaCafe maquina;
+
     public Cafeteria(MaquinaCafe maquina) {
         this.maquina = maquina;
     }
-    
-    public void seleccionProductos(){
+
+    /**
+     * Metodo para habilitar o desabilitar los estados de la seleccion de
+     * productos
+     */
+    public void seleccionProductos() {
         maquina.getAzucar().setEnabled(false);
         maquina.getLeche().setEnabled(false);
         maquina.getTgbNegro().setEnabled(false);
@@ -42,8 +47,13 @@ public class Cafeteria {
         maquina.getMenu().getMenu(0).getItem(0).setEnabled(true);
         maquina.getCancelar().setVisible(false);
     }
-    
-    public void seleccionIngredientes(){
+
+    /**
+     * Metodo para habilitar o desabilitar los estados de la seleccion de
+     * ingredientes
+     */
+
+    public void seleccionIngredientes() {
         maquina.getSelectIngredientes().setEnabled(true);
         maquina.getTgbNegro().setEnabled(false);
         maquina.getTgbCapuccino().setEnabled(false);
@@ -60,7 +70,10 @@ public class Cafeteria {
         maquina.getJbtCincuenta().setEnabled(false);
         maquina.getCancelar().setVisible(true);
     }
-    
+
+    /**
+     * Metodo para activar el estado de preparacion
+     */
     public void preparacion() {
         maquina.getPreparando().setEnabled(true);
         maquina.getJbtAceptar().setVisible(false);
@@ -68,8 +81,12 @@ public class Cafeteria {
         maquina.getLeche().setEnabled(false);
         maquina.getCancelar().setVisible(false);
     }
-    
-    public void entrega(){
+
+    /**
+     * Metodo para activar el estado de entrega y de una nueva compra si se
+     * desea
+     */
+    public void entrega() {
         maquina.getEntrega().setEnabled(true);
         maquina.getJbtNuevaCompra().setVisible(true);
         maquina.getJbtUno().setEnabled(false);
@@ -78,14 +95,22 @@ public class Cafeteria {
         maquina.getJbtVeinte().setEnabled(false);
         maquina.getJbtCincuenta().setEnabled(false);
     }
-    
-    public void SinIngredientes(){
+
+    /**
+     * Metodo para habilitar el estado de sin ingredientes
+     */
+    public void SinIngredientes() {
         maquina.getjbtRellenarIng().setVisible(true);
         maquina.getError().setVisible(true);
         maquina.getJbtNuevaCompra().setVisible(false);
     }
-    
-    public void bloqueado(){
+
+    /**
+     * metodo para bloquar los botones por si hubo algun problema o porque no
+     * corresponde que esten activados en el estado actual.
+     */
+
+    public void bloqueado() {
         maquina.getJbtUno().setEnabled(false);
         maquina.getJbtCinco().setEnabled(false);
         maquina.getJbtDiez().setEnabled(false);

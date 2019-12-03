@@ -27,7 +27,11 @@ public class MaquinaCafe extends javax.swing.JFrame {
      * Creates new form Principal
      */
     ButtonGroup botonGrupo;
-    
+
+    /**
+     * Constructor de la clase MaquinaCafe, se hacen ciertas inicializaciones
+     * como ciertos botones, de las monedas.
+     */
     public MaquinaCafe() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -41,6 +45,10 @@ public class MaquinaCafe extends javax.swing.JFrame {
         this.jbtRellenarIng.setVisible(false);
     }
 
+    /**
+     *
+     * Aqui se encuentran los getter y setter de los labels, y textfields
+     */
     public JTextField getPrecio() {
         return precio;
     }
@@ -100,7 +108,7 @@ public class MaquinaCafe extends javax.swing.JFrame {
     public JToggleButton getTgbNegro() {
         return tgbNegro;
     }
-    
+
     public JButton getJbtAceptar() {
         return jbtAceptar;
     }
@@ -136,10 +144,8 @@ public class MaquinaCafe extends javax.swing.JFrame {
     public JMenuBar getMenu() {
         return menu;
     }
-    
-    
 
-    public void configBotonGrupo(ButtonGroup botonGrupo){
+    public void configBotonGrupo(ButtonGroup botonGrupo) {
         botonGrupo.add(tgbNegro);
         botonGrupo.add(tgbCapuccino);
         botonGrupo.add(tgbDescafeinado);
@@ -152,35 +158,42 @@ public class MaquinaCafe extends javax.swing.JFrame {
     public JLabel getError() {
         return error;
     }
-    
-    public JButton getCancelar(){
+
+    public JButton getCancelar() {
         return jbtnCancelar;
     }
-    
-    public void configBotonImagen(){
+
+    /**
+     * Este metodo es para ajustar las imagenes utilizadas
+     */
+    public void configBotonImagen() {
         cafe.setEnabled(false);
-        ImageIcon imagen; 
-        Icon icono; 
+        ImageIcon imagen;
+        Icon icono;
         imagen = new ImageIcon(getClass().getResource("/Imagenes/cafe.png"));
-        icono= new ImageIcon(imagen.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+        icono = new ImageIcon(imagen.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
         cafe.setIcon(icono);
         imagen = new ImageIcon(getClass().getResource("/Imagenes/azucar.png"));
-        icono= new ImageIcon(imagen.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+        icono = new ImageIcon(imagen.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
         azucar.setIcon(icono);
         imagen = new ImageIcon(getClass().getResource("/Imagenes/leche.png"));
-        icono= new ImageIcon(imagen.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
+        icono = new ImageIcon(imagen.getImage().getScaledInstance(30, 30, Image.SCALE_DEFAULT));
         leche.setIcon(icono);
-        
+
         imagen = new ImageIcon(getClass().getResource("/Imagenes/cafeP.png"));
-        icono= new ImageIcon(imagen.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
+        icono = new ImageIcon(imagen.getImage().getScaledInstance(60, 60, Image.SCALE_DEFAULT));
         tgbNegro.setIcon(icono);
         tgbCapuccino.setIcon(icono);
         tgbDescafeinado.setIcon(icono);
     }
+
+    /**
+     * Metodo para ajustar las imagenes del dinero
+     */
     public void configDinero() {
-        ImageIcon imagen; 
-        Icon icono; 
-        
+        ImageIcon imagen;
+        Icon icono;
+
         imagen = new ImageIcon(getClass().getResource("/Imagenes/1.png"));
         icono = new ImageIcon(imagen.getImage().getScaledInstance(65, 65, Image.SCALE_DEFAULT));
         jbtUno.setIcon(icono);
@@ -196,17 +209,19 @@ public class MaquinaCafe extends javax.swing.JFrame {
         imagen = new ImageIcon(getClass().getResource("/Imagenes/50.png"));
         icono = new ImageIcon(imagen.getImage().getScaledInstance(140, 73, Image.SCALE_DEFAULT));
         jbtCincuenta.setIcon(icono);
-        
+
         precio.setEditable(false);
         dineroIngresado.setEditable(false);
         cambio.setEditable(false);
     }
-    
-    
-    public void configEstados(){
-        ImageIcon imagen; 
-        Icon icono; 
-        
+
+    /**
+     * Metodo para ajustar las imagenes de los estados.
+     */
+    public void configEstados() {
+        ImageIcon imagen;
+        Icon icono;
+
         imagen = new ImageIcon(getClass().getResource("/Imagenes/producto.png"));
         icono = new ImageIcon(imagen.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
         selectProducto.setIcon(icono);
@@ -219,7 +234,7 @@ public class MaquinaCafe extends javax.swing.JFrame {
         imagen = new ImageIcon(getClass().getResource("/Imagenes/entrega.png"));
         icono = new ImageIcon(imagen.getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
         entrega.setIcon(icono);
-        
+
     }
 
     /**

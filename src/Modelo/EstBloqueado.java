@@ -10,18 +10,28 @@ import Modelo.EstadosCafeteria;
 
 /**
  *
- * @author Ariel May
+ * @author everyone
  */
-public class EstBloqueado implements EstadosCafeteria{
+public class EstBloqueado implements EstadosCafeteria {
 
+    /**
+     *
+     * @param fsm parametro de tipo CafeteriaFSM la cual cambia el estado actual
+     * a bloqueado.
+     */
     @Override
-    public void siguiente(CafeteriaFSM fsm) { 
+    public void siguiente(CafeteriaFSM fsm) {
         fsm.setEstadoActual(new EstBloqueado());
     }
 
+    /**
+     *
+     * @param fsm parametro de tipo cafeteriaFSM la cual cambia el estado actual
+     * a bloquado.
+     */
     @Override
     public void error(CafeteriaFSM fsm) {
         fsm.setEstadoActual(new EstBloqueado());
     }
-    
+
 }

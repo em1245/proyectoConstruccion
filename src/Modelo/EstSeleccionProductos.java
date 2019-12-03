@@ -9,16 +9,25 @@ package Modelo;
  *
  * @author Ariel May
  */
-public class EstSeleccionProductos implements EstadosCafeteria{
+public class EstSeleccionProductos implements EstadosCafeteria {
 
+    /**
+     *
+     * @param fsm de tipo CafeteriaFSM para cambiar del estado seleccionar
+     * producto, al estado de seleccion de ingredientes.
+     */
     @Override
-    public  void siguiente(CafeteriaFSM fsm) {
+    public void siguiente(CafeteriaFSM fsm) {
         System.out.println("Estado ingredientes:");
         fsm.device.seleccionIngredientes();
         fsm.setEstadoActual(new EstSeleccionIngredientes());
     }
-    
 
+    /**
+     *
+     * @param fsm de tipo CafeteriaFSM lo cual es cambiar de seleccionar
+     * productos a bloquaer
+     */
     @Override
     public void error(CafeteriaFSM fsm) {
         System.out.println("bloqueado");
@@ -26,5 +35,4 @@ public class EstSeleccionProductos implements EstadosCafeteria{
         fsm.setEstadoActual(new EstBloqueado());
     }
 
-    
 }

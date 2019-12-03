@@ -42,6 +42,12 @@ public class ControladorMaquinaCafe implements ActionListener {
     private List<Integer> denominaciones;
     private int almacen;
 
+    /**
+     * Constructor del controlador
+     *
+     * @param maquina parametro de tipo MaquinaCafe la cual es la vista
+     * @throws IOException exception de valores de entrada y salida
+     */
     public ControladorMaquinaCafe(MaquinaCafe maquina) throws IOException {
         this.maquina = maquina;
         this.maquina.getJbtUno().addActionListener(this);
@@ -64,7 +70,6 @@ public class ControladorMaquinaCafe implements ActionListener {
         bloquear.addActionListener(this);
         Ayuda.add(bloquear);
         this.maquina.getMenu().add(Ayuda);
-
         Cafeteria cafe = new Cafeteria(maquina);
         this.fsm = new CafeteriaFSM(cafe);
         this.monedero = new Monedero();
@@ -72,46 +77,54 @@ public class ControladorMaquinaCafe implements ActionListener {
         this.fReader = new FReader();
         this.llenarIngredientes();
         fReader.crearArchivo("Bitacora");
-        
+
         fReader.crearArchivo("BitacoraIngredientes");
 
         fReader.crearArchivo("BitacoraClientes");
-        
+
         denominaciones = Arrays.asList(50, 20, 10, 5, 1);
 
         almacen = this.conteoDeMonedas();
     }
 
+    /**
+     * Este metodo sirve para cuando le de clic al boton, este escoja una opcion
+     * con respecto al tipo de dinero que va a introducir, el tipo de cafe que
+     * desea el usuario y la cantidad de leche y azucar que necesita.
+     *
+     * @param e es de tipo ActionEvent sirve responder a las acciones del
+     * usuario sobre un grupo de controles (botones)
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (this.maquina.getJbtUno() == e.getSource()) {
             monedero.ingresarUno();
             this.maquina.getDineroIngresado().setText(monedero.getIngresado().toString());
-           
+
             activarProductos();
         }
         if (this.maquina.getJbtCinco() == e.getSource()) {
             monedero.ingresarCinco();
             this.maquina.getDineroIngresado().setText(monedero.getIngresado().toString());
-           
+
             activarProductos();
         }
         if (this.maquina.getJbtDiez() == e.getSource()) {
             monedero.ingresarDiez();
             this.maquina.getDineroIngresado().setText(monedero.getIngresado().toString());
-          
+
             activarProductos();
         }
         if (this.maquina.getJbtVeinte() == e.getSource()) {
             monedero.ingresarVeinte();
             this.maquina.getDineroIngresado().setText(monedero.getIngresado().toString());
-           
+
             activarProductos();
         }
         if (this.maquina.getJbtCincuenta() == e.getSource()) {
             monedero.ingresarCincuenta();
             this.maquina.getDineroIngresado().setText(monedero.getIngresado().toString());
-         
+
             activarProductos();
         }
         if (this.maquina.getLeche() == e.getSource()) {
@@ -164,7 +177,7 @@ public class ControladorMaquinaCafe implements ActionListener {
         if (this.maquina.getJbtAceptar() == e.getSource()) {
 
             orden();
-       
+
         }
 
         if (this.maquina.getMenu().getMenu(0).getItem(0) == e.getSource()) {
@@ -179,6 +192,10 @@ public class ControladorMaquinaCafe implements ActionListener {
         }
     }
 
+    /**
+     * Sirve para habilitar las imagenes de los cafes, ya sea negro, capucciono
+     * o descafeinado
+     */
     public void activarProductos() {
 
         if (cliente.precioCafeNegro() <= monedero.getIngresado()) {
@@ -193,12 +210,21 @@ public class ControladorMaquinaCafe implements ActionListener {
 
     }
 
+    /**
+     * este metodo va a servir para que se llene al 100% los ingredientes cuando
+     * estos ya se estan gastando.
+     */
     public void llenarIngredientes() {
         this.maquina.getPbarCafe().setValue(100);
         this.maquina.getPbarAzucar().setValue(100);
         this.maquina.getPbarLeche().setValue(100);
     }
 
+    /**
+     * Este metodo sirve para mostrar el orden de ejecucion del cafe desde el
+     * comienzo de la preparacion hasta cuando el cliente obtiene su cafe. Esto
+     * se hace mediante estados.
+     */
     public void orden() {
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
@@ -221,21 +247,20 @@ public class ControladorMaquinaCafe implements ActionListener {
                 String bitacora = new Date().toString() + " "
                         + this.maquina.getPedido().getText() + " $"
                         + this.maquina.getPrecio().getText() + "\n";
-                
+
                 try {
                     this.fReader.escribirArchivo(bitacora, "Bitacora");
                 } catch (IOException ex) {
                     Logger.getLogger(ControladorMaquinaCafe.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-              
                 int precio = Integer.parseInt(this.maquina.precio.getText());
                 int monto = Integer.parseInt(this.maquina.dineroIngresado.getText());
                 almacen += monto;
-                String bitacoraIngredientes = new Date().toString() + " Nivel de cafe: "+this.cliente.getNivelCafe()+" Nivel de leche: "+this.cliente.getNivelLeche()+" Nivel de Azucar: "+this.cliente.getNivelAzucar()+"\n";
-                String bitacoraCliente = new Date().toString() + " Dinero ingresado por cliente $"+this.maquina.dineroIngresado.getText() + " Cambio $"+(monto-precio)+"\n";
+                String bitacoraIngredientes = new Date().toString() + " Nivel de cafe: " + this.cliente.getNivelCafe() + " Nivel de leche: " + this.cliente.getNivelLeche() + " Nivel de Azucar: " + this.cliente.getNivelAzucar() + "\n";
+                String bitacoraCliente = new Date().toString() + " Dinero ingresado por cliente $" + this.maquina.dineroIngresado.getText() + " Cambio $" + (monto - precio) + "\n";
                 try {
-                    this.fReader.escribirArchivo(bitacoraIngredientes,"BitacoraIngredientes");
+                    this.fReader.escribirArchivo(bitacoraIngredientes, "BitacoraIngredientes");
                     this.fReader.escribirArchivo(bitacoraCliente, "BitacoraClientes");
                 } catch (IOException ex) {
                     Logger.getLogger(ControladorMaquinaCafe.class.getName()).log(Level.SEVERE, null, ex);
@@ -245,38 +270,46 @@ public class ControladorMaquinaCafe implements ActionListener {
                 String despuesCambio = "Hay en almacen despues de dar el cambio: " + almacen;
                 System.out.println(despuesCambio);
                 JOptionPane.showMessageDialog(null, mensajeCambio, "Gracias Por su compra", JOptionPane.NO_OPTION);
-               
+
                 System.out.println("Orden terminada!(ES)");
-                this.maquina.cambio.setText(""+(monto-precio));
+                this.maquina.cambio.setText("" + (monto - precio));
             } catch (InterruptedException ex) {
                 Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
             }
         }, executor);
 
-   
     }
 
-    
-
-    
+    /**
+     * este metodo sirve para limpiar los campos y estos queden con 0
+     */
     public void vaciarCampos() {
         this.maquina.cambio.setText("0");
         this.maquina.getDineroIngresado().setText("0");
         this.maquina.getPrecio().setText("0");
     }
 
+    /**
+     * Sirve para poder empezar a ingresar dinero.
+     */
     public void iniciarIngresado() {
         this.monedero.iniciarDineroIngresado();
     }
-    
-    public int conteoDeMonedas(){
+
+    /**
+     * Metodo para contar la cantidad de monedas de 5,10,20 y 50 pesos Cuantos
+     * hay de cada una de estas.
+     *
+     * @return total es la suma de todas las monedas.
+     */
+    public int conteoDeMonedas() {
         int total = 0;
-        
+
         total = total + (this.monedero.getMonedasRestantes().get(String.valueOf(1)));
-        total = total + (5*(this.monedero.getMonedasRestantes().get(String.valueOf(5))));
-        total = total + (10*(this.monedero.getMonedasRestantes().get(String.valueOf(10))));
-        total = total + (20*(this.monedero.getMonedasRestantes().get(String.valueOf(20))));
-        total = total + (50*(this.monedero.getMonedasRestantes().get(String.valueOf(50))));
+        total = total + (5 * (this.monedero.getMonedasRestantes().get(String.valueOf(5))));
+        total = total + (10 * (this.monedero.getMonedasRestantes().get(String.valueOf(10))));
+        total = total + (20 * (this.monedero.getMonedasRestantes().get(String.valueOf(20))));
+        total = total + (50 * (this.monedero.getMonedasRestantes().get(String.valueOf(50))));
 
         return total;
     }

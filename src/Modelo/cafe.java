@@ -8,6 +8,7 @@ package Modelo;
 import Controlador.ControladorMaquinaCafe;
 import Vista.MaquinaCafe;
 import java.io.IOException;
+
 /**
  *
  * @author Ariel May
@@ -15,17 +16,20 @@ import java.io.IOException;
  * @author Emmanuel Rivero
  * @author Isaac Canche
  * @author Jose Suarez
- * 
+ *
  * Clase principal para la ejecucion del proyecto.
  */
 public class cafe {
 
     /**
-     * @param args the command line arguments
+     *
+     * @param args argumento
+     * @throws InterruptedException exception de interrupcion
+     * @throws IOException exception de entrada y salida
      */
     public static void main(String[] args) throws InterruptedException, IOException {
         MaquinaCafe maquinaCafe = new MaquinaCafe();
         ControladorMaquinaCafe controlador = new ControladorMaquinaCafe(maquinaCafe);
     }
-    
+
 }

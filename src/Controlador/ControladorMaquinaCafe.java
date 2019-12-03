@@ -175,6 +175,7 @@ public class ControladorMaquinaCafe implements ActionListener {
             JOptionPane.showMessageDialog(null, "Tu cambio es " + this.maquina.dineroIngresado.getText());
             this.maquina.getDineroIngresado().setText("0");
             this.maquina.getPrecio().setText("0");
+            this.monedero.iniciarDineroIngresado();
         }
     }
 
@@ -246,6 +247,7 @@ public class ControladorMaquinaCafe implements ActionListener {
                 JOptionPane.showMessageDialog(null, mensajeCambio, "Gracias Por su compra", JOptionPane.NO_OPTION);
                
                 System.out.println("Orden terminada!(ES)");
+                this.maquina.cambio.setText(""+(monto-precio));
             } catch (InterruptedException ex) {
                 Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
             }

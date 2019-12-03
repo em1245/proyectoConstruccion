@@ -40,6 +40,7 @@ public class Cafeteria {
         maquina.getjbtRellenarIng().setVisible(false);
         maquina.getError().setVisible(false);
         maquina.getMenu().getMenu(0).getItem(0).setEnabled(true);
+        maquina.getCancelar().setVisible(false);
     }
     
     public void seleccionIngredientes(){
@@ -57,6 +58,7 @@ public class Cafeteria {
         maquina.getJbtDiez().setEnabled(false);
         maquina.getJbtVeinte().setEnabled(false);
         maquina.getJbtCincuenta().setEnabled(false);
+        maquina.getCancelar().setVisible(true);
     }
     
     public void preparacion() {
@@ -64,7 +66,7 @@ public class Cafeteria {
         maquina.getJbtAceptar().setVisible(false);
         maquina.getAzucar().setEnabled(false);
         maquina.getLeche().setEnabled(false);
-
+        maquina.getCancelar().setVisible(false);
     }
     
     public void entrega(){

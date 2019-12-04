@@ -5,6 +5,9 @@
  */
 package Modelo;
 
+import Controlador.ControladorMaquinaCafe;
+import Vista.MaquinaCafe;
+import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,7 +17,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Emmanuel
+ * @author Ariel May
  */
 public class EstSeleccionProductosTest {
     
@@ -41,24 +44,32 @@ public class EstSeleccionProductosTest {
      * Test of siguiente method, of class EstSeleccionProductos.
      */
     @Test
-    public void testSiguiente() {
+    public void testSiguiente() throws IOException {
         System.out.println("siguiente");
-        CafeteriaFSM fsm = null;
-        EstSeleccionProductos instance = new EstSeleccionProductos();
-        instance.siguiente(fsm);
-      
+        MaquinaCafe maquina = new MaquinaCafe();
+        ControladorMaquinaCafe control = new ControladorMaquinaCafe(maquina);
+        CafeteriaFSM instance = new CafeteriaFSM(new Cafeteria(maquina));
+        instance.setEstadoActual(new EstSeleccionProductos());
+        instance.siguiente();
+        if (!(instance.getEstado() instanceof EstSeleccionIngredientes)) {
+            fail("The test case is a prototype.");
+        }
     }
 
     /**
      * Test of error method, of class EstSeleccionProductos.
      */
     @Test
-    public void testError() {
-        System.out.println("error");
-        CafeteriaFSM fsm = null;
-        EstSeleccionProductos instance = new EstSeleccionProductos();
-        instance.error(fsm);
-      
+    public void testError() throws IOException {
+        System.out.println("siguiente");
+        MaquinaCafe maquina = new MaquinaCafe();
+        ControladorMaquinaCafe control = new ControladorMaquinaCafe(maquina);
+        CafeteriaFSM instance = new CafeteriaFSM(new Cafeteria(maquina));
+        instance.setEstadoActual(new EstSeleccionProductos());
+        instance.error();
+        if (!(instance.getEstado() instanceof EstBloqueado)) {
+            fail("The test case is a prototype.");
+        }
     }
     
 }

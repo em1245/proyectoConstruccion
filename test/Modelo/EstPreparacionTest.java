@@ -5,6 +5,9 @@
  */
 package Modelo;
 
+import Controlador.ControladorMaquinaCafe;
+import Vista.MaquinaCafe;
+import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,7 +17,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Emmanuel
+ * @author Ariel May
  */
 public class EstPreparacionTest {
     
@@ -41,12 +44,16 @@ public class EstPreparacionTest {
      * Test of siguiente method, of class EstPreparacion.
      */
     @Test
-    public void testSiguiente() {
+    public void testSiguiente() throws IOException {
         System.out.println("siguiente");
-        CafeteriaFSM fsm = null;
-        EstPreparacion instance = new EstPreparacion();
-        instance.siguiente(fsm);
-       
+        MaquinaCafe maquina = new MaquinaCafe();
+        ControladorMaquinaCafe control = new ControladorMaquinaCafe(maquina);
+        CafeteriaFSM instance = new CafeteriaFSM(new Cafeteria(maquina));
+        instance.setEstadoActual(new EstPreparacion());
+        instance.siguiente();
+        if (!(instance.getEstado() instanceof EstEntrega)) {
+            fail("The test case is a prototype.");
+        }
     }
 
     /**
@@ -57,8 +64,6 @@ public class EstPreparacionTest {
         System.out.println("error");
         CafeteriaFSM fsm = null;
         EstPreparacion instance = new EstPreparacion();
-        instance.error(fsm);
-       
     }
     
 }

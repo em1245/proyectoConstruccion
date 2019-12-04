@@ -5,8 +5,6 @@
  */
 package Modelo;
 
-import java.util.List;
-import java.util.Map;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Emmanuel
+ * @author Ariel May
  */
 public class MonederoTest {
     
@@ -47,7 +45,9 @@ public class MonederoTest {
         System.out.println("ingresarUno");
         Monedero instance = new Monedero();
         instance.ingresarUno();
-       
+        if(instance.getIngresado() != 1){
+            fail("The test case is a prototype.");
+        }
     }
 
     /**
@@ -58,7 +58,9 @@ public class MonederoTest {
         System.out.println("ingresarCinco");
         Monedero instance = new Monedero();
         instance.ingresarCinco();
-       
+        if(instance.getIngresado() != 5){
+            fail("The test case is a prototype.");
+        }
     }
 
     /**
@@ -69,7 +71,9 @@ public class MonederoTest {
         System.out.println("ingresarDiez");
         Monedero instance = new Monedero();
         instance.ingresarDiez();
-        
+        if(instance.getIngresado() != 10){
+            fail("The test case is a prototype.");
+        }
     }
 
     /**
@@ -80,7 +84,9 @@ public class MonederoTest {
         System.out.println("ingresarVeinte");
         Monedero instance = new Monedero();
         instance.ingresarVeinte();
-       
+        if(instance.getIngresado() != 20){
+            fail("The test case is a prototype.");
+        }
     }
 
     /**
@@ -91,7 +97,9 @@ public class MonederoTest {
         System.out.println("ingresarCincuenta");
         Monedero instance = new Monedero();
         instance.ingresarCincuenta();
-       
+        if(instance.getIngresado() != 50){
+            fail("The test case is a prototype.");
+        }
     }
 
     /**
@@ -101,10 +109,11 @@ public class MonederoTest {
     public void testGetIngresado() {
         System.out.println("getIngresado");
         Monedero instance = new Monedero();
-        Integer expResult = null;
+        Integer expResult = 100;
+        instance.ingresarCincuenta();
+        instance.ingresarCincuenta();
         Integer result = instance.getIngresado();
         assertEquals(expResult, result);
-      
     }
 
     /**
@@ -114,49 +123,11 @@ public class MonederoTest {
     public void testIniciarDineroIngresado() {
         System.out.println("iniciarDineroIngresado");
         Monedero instance = new Monedero();
+        instance.ingresarCinco();
         instance.iniciarDineroIngresado();
-       
-    }
-
-    /**
-     * Test of iniciarDineroDeMaquina method, of class Monedero.
-     */
-    @Test
-    public void testIniciarDineroDeMaquina() {
-        System.out.println("iniciarDineroDeMaquina");
-        Monedero instance = new Monedero();
-        instance.iniciarDineroDeMaquina();
-        
-    }
-
-    /**
-     * Test of getMonedasRestantes method, of class Monedero.
-     */
-    @Test
-    public void testGetMonedasRestantes() {
-        System.out.println("getMonedasRestantes");
-        Monedero instance = new Monedero();
-        Map<String, Integer> expResult = null;
-        Map<String, Integer> result = instance.getMonedasRestantes();
-        assertEquals(expResult, result);
-     
-    }
-
-    /**
-     * Test of darCambio method, of class Monedero.
-     */
-    @Test
-    public void testDarCambio() {
-        System.out.println("darCambio");
-        int precio = 0;
-        int monto = 0;
-        int almacen = 0;
-        List<Integer> denominaciones = null;
-        Monedero instance = new Monedero();
-        String expResult = "";
-        String result = instance.darCambio(precio, monto, almacen, denominaciones);
-        assertEquals(expResult, result);
-       
+        if(instance.getIngresado() != 0){
+            
+        }
     }
     
 }

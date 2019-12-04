@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Emmanuel
+ * @author Ariel May
  */
 public class EstSinCambioTest {
     
@@ -46,7 +46,8 @@ public class EstSinCambioTest {
         CafeteriaFSM fsm = null;
         EstSinCambio instance = new EstSinCambio();
         instance.siguiente(fsm);
-       
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,7 +59,8 @@ public class EstSinCambioTest {
         CafeteriaFSM fsm = null;
         EstSinCambio instance = new EstSinCambio();
         instance.error(fsm);
-       
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
     
 }

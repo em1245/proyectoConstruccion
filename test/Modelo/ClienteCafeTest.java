@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Emmanuel
+ * @author Ariel May
  */
 public class ClienteCafeTest {
     
@@ -44,10 +44,9 @@ public class ClienteCafeTest {
     public void testPrecioCafeNegro() {
         System.out.println("precioCafeNegro");
         ClienteCafe instance = new ClienteCafe();
-        int expResult = 0;
+        int expResult = 35;
         int result = instance.precioCafeNegro();
         assertEquals(expResult, result);
-    
     }
 
     /**
@@ -57,10 +56,9 @@ public class ClienteCafeTest {
     public void testPrecioCafeCapuccino() {
         System.out.println("precioCafeCapuccino");
         ClienteCafe instance = new ClienteCafe();
-        int expResult = 0;
+        int expResult = 45;
         int result = instance.precioCafeCapuccino();
         assertEquals(expResult, result);
-      
     }
 
     /**
@@ -70,10 +68,9 @@ public class ClienteCafeTest {
     public void testPrecioCafeDescafeinado() {
         System.out.println("precioCafeDescafeinado");
         ClienteCafe instance = new ClienteCafe();
-        int expResult = 0;
+        int expResult = 30;
         int result = instance.precioCafeDescafeinado();
         assertEquals(expResult, result);
-        
     }
 
     /**
@@ -83,10 +80,9 @@ public class ClienteCafeTest {
     public void testGetNivelCafe() {
         System.out.println("getNivelCafe");
         ClienteCafe instance = new ClienteCafe();
-        int expResult = 0;
+        int expResult = 100;
         int result = instance.getNivelCafe();
         assertEquals(expResult, result);
-       
     }
 
     /**
@@ -96,10 +92,9 @@ public class ClienteCafeTest {
     public void testGetNivelLeche() {
         System.out.println("getNivelLeche");
         ClienteCafe instance = new ClienteCafe();
-        int expResult = 0;
+        int expResult = 100;
         int result = instance.getNivelLeche();
         assertEquals(expResult, result);
-     
     }
 
     /**
@@ -109,10 +104,9 @@ public class ClienteCafeTest {
     public void testGetNivelAzucar() {
         System.out.println("getNivelAzucar");
         ClienteCafe instance = new ClienteCafe();
-        int expResult = 0;
+        int expResult = 100;
         int result = instance.getNivelAzucar();
         assertEquals(expResult, result);
-       
     }
 
     /**
@@ -123,7 +117,9 @@ public class ClienteCafeTest {
         System.out.println("cucharadaCafe");
         ClienteCafe instance = new ClienteCafe();
         instance.cucharadaCafe();
-       
+        if(instance.getNivelCafe()==100){
+            fail("The test case is a prototype.");
+        } 
     }
 
     /**
@@ -134,7 +130,9 @@ public class ClienteCafeTest {
         System.out.println("cucharadaLeche");
         ClienteCafe instance = new ClienteCafe();
         instance.cucharadaLeche();
-        
+        if(instance.getNivelLeche()==100){
+            fail("The test case is a prototype.");
+        } 
     }
 
     /**
@@ -145,7 +143,9 @@ public class ClienteCafeTest {
         System.out.println("cucharadaAzucar");
         ClienteCafe instance = new ClienteCafe();
         instance.cucharadaAzucar();
-       
+        if(instance.getNivelAzucar()==100){
+            fail("The test case is a prototype.");
+        } 
     }
 
     /**
@@ -155,8 +155,14 @@ public class ClienteCafeTest {
     public void testRellenarIngredientes() {
         System.out.println("rellenarIngredientes");
         ClienteCafe instance = new ClienteCafe();
+        instance.getNivelAzucar();
         instance.rellenarIngredientes();
-       
+        boolean nivel = instance.getNivelAzucar()==100 &&
+                        instance.getNivelLeche()==100 && 
+                        instance.getNivelCafe()==100;
+        if(!nivel){
+            fail("The test case is a prototype.");
+        }
     }
     
 }

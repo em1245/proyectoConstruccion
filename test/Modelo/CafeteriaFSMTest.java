@@ -5,6 +5,9 @@
  */
 package Modelo;
 
+import Controlador.ControladorMaquinaCafe;
+import Vista.MaquinaCafe;
+import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,7 +17,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Emmanuel
+ * @author Ariel May
  */
 public class CafeteriaFSMTest {
     
@@ -22,7 +25,7 @@ public class CafeteriaFSMTest {
     }
     
     @BeforeClass
-    public static void setUpClass() {
+    public static void setUpClass() throws IOException {
     }
     
     @AfterClass
@@ -43,10 +46,10 @@ public class CafeteriaFSMTest {
     @Test
     public void testGetEstado() {
         System.out.println("getEstado");
-        EstadosCafeteria expResult = null;
         EstadosCafeteria result = CafeteriaFSM.getEstado();
-        assertEquals(expResult, result);
-       
+       if(!(result instanceof EstadosCafeteria)){
+       fail("The test case is a prototype.");
+       }
     }
 
     /**
@@ -55,33 +58,36 @@ public class CafeteriaFSMTest {
     @Test
     public void testGetDevice() {
         System.out.println("getDevice");
-        Cafeteria expResult = null;
         Cafeteria result = CafeteriaFSM.getDevice();
-        assertEquals(expResult, result);
-       
-    }
-
+        if (!(result instanceof Cafeteria)) {
+            fail("The test case is a prototype.");
+        }
+    }        
     /**
      * Test of setEstadoActual method, of class CafeteriaFSM.
      */
     @Test
     public void testSetEstadoActual() {
         System.out.println("setEstadoActual");
-        EstadosCafeteria estado = null;
-        CafeteriaFSM instance = null;
-        instance.setEstadoActual(estado);
-      
+        Cafeteria result = CafeteriaFSM.getDevice();
+        if (!(result instanceof Cafeteria)) {
+            fail("The test case is a prototype.");
+        }
     }
 
     /**
      * Test of siguiente method, of class CafeteriaFSM.
      */
     @Test
-    public void testSiguiente() {
+    public void testSiguiente() throws IOException {
         System.out.println("siguiente");
-        CafeteriaFSM instance = null;
+        MaquinaCafe maquina = new MaquinaCafe();
+        ControladorMaquinaCafe control = new ControladorMaquinaCafe(maquina);
+        CafeteriaFSM instance = new CafeteriaFSM(new Cafeteria(maquina));
         instance.siguiente();
-     
+        if (!(instance.getEstado() instanceof EstadosCafeteria)) {
+            fail("The test case is a prototype.");
+        }
     }
 
     /**
@@ -91,19 +97,21 @@ public class CafeteriaFSMTest {
     public void testError() {
         System.out.println("error");
         CafeteriaFSM instance = null;
-        instance.error();
-       
+        if(!(instance.getEstado() instanceof EstadosCafeteria)){
+            fail("The test case is a prototype.");
+        }
     }
 
     /**
-     * Test of reinicarEstado method, of class CafeteriaFSM.
+     * Test of reinciarEstados method, of class CafeteriaFSM.
      */
     @Test
-    public void testReinicarEstado() {
-        System.out.println("reinicarEstado");
+    public void testReinciarEstados() {
+        System.out.println("reinciarEstados");
         CafeteriaFSM instance = null;
-        instance.reinicarEstado();
-       
+        if(!(instance.getEstado() instanceof EstadosCafeteria)){
+            fail("The test case is a prototype.");
+        }
     }
     
 }

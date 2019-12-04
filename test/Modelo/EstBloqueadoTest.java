@@ -5,6 +5,9 @@
  */
 package Modelo;
 
+import Controlador.ControladorMaquinaCafe;
+import Vista.MaquinaCafe;
+import java.io.IOException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,7 +17,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Emmanuel
+ * @author Ariel May
  */
 public class EstBloqueadoTest {
     
@@ -41,24 +44,30 @@ public class EstBloqueadoTest {
      * Test of siguiente method, of class EstBloqueado.
      */
     @Test
-    public void testSiguiente() {
+    public void testSiguiente() throws IOException {
         System.out.println("siguiente");
-        CafeteriaFSM fsm = null;
-        EstBloqueado instance = new EstBloqueado();
-        instance.siguiente(fsm);
-        
+        MaquinaCafe maquina = new MaquinaCafe();
+        ControladorMaquinaCafe control = new ControladorMaquinaCafe(maquina);
+        CafeteriaFSM instance = new CafeteriaFSM(new Cafeteria(maquina));
+        instance.siguiente();
+        if (!(instance.getEstado() instanceof EstadosCafeteria)) {
+            fail("The test case is a prototype.");
+        }
     }
 
     /**
      * Test of error method, of class EstBloqueado.
      */
     @Test
-    public void testError() {
+    public void testError() throws IOException {
         System.out.println("error");
-        CafeteriaFSM fsm = null;
-        EstBloqueado instance = new EstBloqueado();
-        instance.error(fsm);
-       
+        MaquinaCafe maquina = new MaquinaCafe();
+        ControladorMaquinaCafe control = new ControladorMaquinaCafe(maquina);
+        CafeteriaFSM instance = new CafeteriaFSM(new Cafeteria(maquina));
+        instance.siguiente();
+        if (!(instance.getEstado() instanceof EstadosCafeteria)) {
+            fail("The test case is a prototype.");
+        }
     }
     
 }

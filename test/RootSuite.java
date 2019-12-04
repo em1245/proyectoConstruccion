@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -17,8 +16,8 @@ import org.junit.runners.Suite;
  * @author Ariel May
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({Modelo.EstPreparacionTest.class, Modelo.EstSinCambioTest.class, Modelo.EstEntregaTest.class, Modelo.FReaderTest.class, Modelo.CafeteriaFSMTest.class, Modelo.EstSeleccionProductosTest.class, Modelo.EstBloqueadoTest.class, Modelo.EstSeleccionIngredientesTest.class, Modelo.MonederoTest.class, Modelo.ClienteCafeTest.class, Modelo.EstSinIngredientesTest.class})
-public class ModeloSuite {
+@Suite.SuiteClasses({Modelo.ModeloSuite.class})
+public class RootSuite {
 
     @BeforeClass
     public static void setUpClass() throws Exception {

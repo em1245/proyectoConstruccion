@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Emmanuel
+ * @author Ariel May
  */
 public class FReaderTest {
     
@@ -46,7 +46,6 @@ public class FReaderTest {
         String nombre = "";
         FReader instance = new FReader();
         instance.crearArchivo(nombre);
-     
     }
 
     /**
@@ -59,7 +58,6 @@ public class FReaderTest {
         String expResult = "";
         String result = instance.getAbsolutPath();
         assertEquals(expResult, result);
-        
     }
 
     /**
@@ -72,7 +70,6 @@ public class FReaderTest {
         String nombre = "";
         FReader instance = new FReader();
         instance.escribirArchivo(cadena, nombre);
-        
     }
     
 }
